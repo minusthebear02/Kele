@@ -2,11 +2,13 @@
   require 'json'
   require 'kele/roadmap'
   require 'kele/message'
+  require 'kele/checkpoint'
 
   class Kele
     include HTTParty
     include Roadmap
     include Message
+    include Checkpoint
 
     def initialize(email, password)
       @base_uri = 'https://www.bloc.io/api/v1'
