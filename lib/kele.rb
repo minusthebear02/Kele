@@ -1,14 +1,17 @@
   require 'httparty'
   require 'json'
   require 'kele/roadmap'
+  require 'kele/message'
 
   class Kele
     include HTTParty
     include Roadmap
+    include Message
 
     def initialize(email, password)
       @base_uri = 'https://www.bloc.io/api/v1'
-      options = {body: {email: email, password: password}}
+      @email = email
+      options = {body: {email: @email, password: password}}
       response = Kele.post("#{@base_uri}/sessions", options)
       if response && response["auth_token"]
         @auth_token = response["auth_token"]
